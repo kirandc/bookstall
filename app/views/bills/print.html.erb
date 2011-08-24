@@ -41,12 +41,12 @@
     <% counter = 1%>
     <div style="width:850px;">
       <% @customers.each do | customer | %>
-        <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month.to_i, @year.to_i]) %>
+        <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
         <% check_monthly = false %>
         <% customer_bills.each do |customer_bill| %>
             <% check_monthly = true if customer_bill.paper.paper_month_year == "Monthly"  %>
         <% end %>
-        <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
+        <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month.to_i, @year.to_i]) %>
         <% if !customer_bills.blank? and customer_bills.size <= 5 and check_monthly == true %>
           <div style="width:410px;height:288px;border: 1px solid;padding-top:15px;margin-top:12px;<%= if  counter % 2 == 1; "float:left;" ;else;"float:right;";end;%>">
             <div style="width:400px;font-weight:bold;font-size:20px;"><center><b>Agent : S. T. NEVE </b></center></div>
