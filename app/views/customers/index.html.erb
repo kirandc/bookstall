@@ -61,7 +61,7 @@
           <td><%= customer.phone_no %></td>
           <td><%= customer.mobile_no %></td>
           <td><%= link_to "Edit", {:action => "show", :id => customer.id} %></td>
-          <td><%= link_to "Delete", {:action => "destroy", :id => customer.id},  :method => :delete, :confirm => "Do you want to delete this customer?" %></td>
+          <td><%= link_to "Delete", customer_path(customer),  :method => :delete, :confirm => "Do you want to delete this customer?" %></td>
           <td><%= link_to "Bill History", {:action => "bill_history", :id => customer.id} %></td>
         </tr>
         <% end if @customers%>

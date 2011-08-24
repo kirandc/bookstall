@@ -3,8 +3,6 @@
 
 <% form_for :bill, @bill, :url => { :action => 'update_bill', :id => @bill.id, :custid => @customer.id } do |c| %>
 
-  <%= error_messages_for :bill %>
-
 <table class="dati">
   <thead>
     <tr>
@@ -15,23 +13,23 @@
   <tbody>
     <tr>
       <td>Paper</td>
-      <td><%= @bill.paper.name %></td>
+      <td><%= @bill.paper.name %><%= @bill.errors[:name]%></td>
     </tr>
     <tr>
       <td>Month</td>
-      <td><%= get_month(@bill.month) %></td>
+      <td><%= get_month(@bill.month) %><%= @bill.errors[:month] %></td>
     </tr>
      <tr>
       <td>Year</td>
-      <td><%= @bill.year %></td>
+      <td><%= @bill.year %><%= @bill.errors[:year]%> </td>
     </tr>
     <tr>
       <td>Day</td>
-      <td><%= c.text_field  :day %></td>
+      <td><%= c.text_field  :day %><%= @bill.errors[:day]%></td>
     </tr>
     <tr>
       <td>Quntity</td>
-      <td><%= c.text_field  :qunt %></td>
+      <td><%= c.text_field  :qunt %><%= @bill.errors[:name]%></td>
     </tr>
     <tr>
       <td>Amount</td>

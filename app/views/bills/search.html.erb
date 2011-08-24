@@ -20,7 +20,7 @@
         <td><%= get_month(bill.month) %></td>
         <td><%= bill.year %></td>
         <td><%= bill.amount %></td>
-        <td><%= link_to_remote bill_status(bill.is_paid), :url => { :controller => "customers", :action => "paid", :id => bill.id},  :html => {:id => "bill_#{bill.id}"}, :confirm => "Do you want to made payment? "  %></td>
+        <td><%= link_to bill_status(bill.is_paid), { :controller => "customers", :action => "paid", :id => bill.id}, :remote => true, :confirm => "Do you want to made payment?", :id => "bill_#{bill.id}"%></td>
       </tr>
     <% end %>
   </tbody>

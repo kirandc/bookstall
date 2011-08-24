@@ -19,12 +19,12 @@
         <td><%= bill.paper.name %></td>
         <td><%= get_month(bill.month) %></td>
         <td><%= bill.year %></td>
-	<td><%= bill.day %></td>
-	<td><%= bill.qunt %></td>
+        <td><%= bill.day %></td>
+        <td><%= bill.qunt %></td>
         <td><%= bill.amount %></td>
-        <td><%= link_to_remote bill_status(bill.is_paid), :url => { :controller => "customers", :action => "paid", :id => bill.id},  :html => {:id => "bill_#{bill.id}"}, :confirm => "Do you want to made payment? "  %></td>
+        <td><%= link_to bill_status(bill.is_paid), {:controller => "customers", :action => "paid", :id => bill.id}, :remote => true, :id => "bill_#{bill.id}", :confirm => "Do you want to made payment? " %></td>
         <td><%= link_to "Print", {:controller => "customers", :action => "print", :id => bill.id} %></td>
-	<td><%= link_to "Edit", {:controller => "customers", :action => "bill_edit", :id => @customer.id, :bill_id => bill.id} %></td>
+        <td><%= link_to "Edit", {:controller => "customers", :action => "bill_edit", :id => @customer.id, :bill_id => bill.id} %></td>
       </tr>
     <% end %>
   </tbody>

@@ -13,7 +13,7 @@
       <tr>
         <td><%= get_month(bill_history.month) %></td>
         <td><%= bill_history.year %></td>
-        <td><%= link_to "Delete", {:action => "destroy", :id => bill_history.id},  :confirm => "Do you want to delete Bill History? This action also delete customes bill history " %></td>
+        <td><%= link_to "Delete", {:action => "destroy", :id => bill_history.id}, :method => :delete, :confirm => "Do you want to delete Bill History? This action also delete customes bill history " %></td>
       </tr>
     <% end %>
   </tbody>

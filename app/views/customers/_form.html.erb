@@ -43,11 +43,11 @@
     </tr>
     <% counter = 1%>
     <% @papers.each do |paper| %>
-      <%= "<tr>" if counter % 2 == 1 %> 
+      <%= raw "<tr>" if counter % 2 == 1 %> 
         <td><%= check_box_tag "papers[]", paper.id, get_customer_paper(@customer, paper.id) %><%= paper.name %></td>
-        <%= "</tr>" if counter % 2 == 0 %>
+        <%= raw "</tr>" if counter % 2 == 0 %>
       <% counter += 1%>
     <% end %>
-    <%= "</tr>" if counter % 2 == 1 %>
+    <%= raw "</tr>" if counter % 2 == 1 %>
 </tbody>
 </table>

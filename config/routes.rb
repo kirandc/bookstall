@@ -11,30 +11,34 @@ TestApp::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-     resource :home
-     resources :customers do
-	     member do
-	     get 'bill_history'
-	     end
+  resource :home
+  resources :customers do
+    member do
+      get 'bill_history'
+      get 'paid'
+      get 'print'
+      get 'bill_edit'
+      match 'update_bill'
     end
-     resources :employees do
-	member do
-		get 'customer_list'
-	end
-	collection do
-		get 'get_customer'
-		post 'customer_view'
-        end
-     end
-     resources :papers
-     resources :bills do
-	     collection do
-		get 'bill_search'
-		get 'bill_print'
-		post 'search'
-		post 'print'
-	     end
-     end
+  end
+  resources :employees do
+    member do
+      get 'customer_list'
+    end
+    collection do
+      get 'get_customer'
+      post 'customer_view'
+    end
+  end
+  resources :papers
+  resources :bills do
+    collection do
+      get 'bill_search'
+      get 'bill_print'
+      post 'search'
+      post 'print'
+    end
+  end
   # Sample resource route with options:
   #   resources :products do
   #     member do

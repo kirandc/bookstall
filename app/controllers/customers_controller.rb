@@ -31,7 +31,7 @@ class CustomersController < ApplicationController
     if ![:papers].blank?
       params[:papers].each do |paper_id|
         CustomerPaper.create!(:customer_id => @customer.id, :paper_id => paper_id)
-      end
+      end if not params[:papers].blank?
     end
     flash[ :notice ] = "Customer Sucessfully created"
     redirect_to :action => 'index'
@@ -50,7 +50,7 @@ class CustomersController < ApplicationController
 
       params[:papers].each do |paper_id|
         CustomerPaper.create!(:customer_id => @customer.id, :paper_id => paper_id) 
-      end
+      end if not params[:papers].blank?
     end
     flash[ :notice ] = "Customer Sucessfully updated"
     redirect_to :action => 'index'
@@ -74,9 +74,9 @@ class CustomersController < ApplicationController
     @bill = Bill.find(params[:id])
     @bill.is_paid = true
     @bill.save
-    render :update do |page|
-      page.replace_html "bill_#{@bill.id}", :text => 'Paid'
-    end      
+    respond_to do |format|
+      format.js
+    end
   end
 
   def print
