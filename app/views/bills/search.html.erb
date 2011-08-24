@@ -1,0 +1,27 @@
+<h1>Search result</h1>
+<h3>Total Paid Amount = <%= @total_paid%></h3>
+<h3>Total Not Paid Amount = <%= @total_unpaid%></h3>
+<table class="dati">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Paper</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Amount</th>
+      <th>Payment Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bills.each do | bill| %>
+      <tr>
+        <td><%= bill.customer.first_name %> <%= bill.customer.middle_name %> <%= bill.customer.last_name %></td>
+        <td><%= bill.paper.name %></td>
+        <td><%= get_month(bill.month) %></td>
+        <td><%= bill.year %></td>
+        <td><%= bill.amount %></td>
+        <td><%= link_to_remote bill_status(bill.is_paid), :url => { :controller => "customers", :action => "paid", :id => bill.id},  :html => {:id => "bill_#{bill.id}"}, :confirm => "Do you want to made payment? "  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

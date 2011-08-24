@@ -1,0 +1,12 @@
+<h1>Edit Employee</h1>
+
+
+<% form_for :employee, @employee, :url => { :action => 'update', :id => @employee.id } do |c| %>
+
+  <%= render :partial => 'form', :locals => { :c => c } %>
+
+  <p>
+  <%= submit_tag 'save' %>
+  </p>
+
+<% end %>

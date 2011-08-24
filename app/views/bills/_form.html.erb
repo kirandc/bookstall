@@ -1,0 +1,20 @@
+<%= error_messages_for :bill_history %>
+
+<table class="dati">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Month</td>
+      <td><%= c.select :month , MONTH.collect{ |p| [ p[1] ,p[0] ]} %></td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td><%= c.select :year , YEAR.collect{ |p| [ p ,p ]} %></td>
+    </tr>
+  </tbody>
+</table>

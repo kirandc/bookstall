@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>S.T.Neve Bookstall</title>
+  <% if controller.action_name == "index" %> 
+	<%= javascript_include_tag  'jquery', 'jquery-ui', 'jrails', 'application', 'Hindi', 'Parser' %>
+<% else %>
+  <%= javascript_include_tag "jscalendar-1.0/calendar.js" %>
+  <%= javascript_include_tag "jscalendar-1.0/lang/calendar-en.js" %>
+  <%= javascript_include_tag "jscalendar-1.0/calendar-setup.js" %>
+	<%= javascript_include_tag 'prototype',  'application', 'Hindi', 'Parser' %>
+	<% end %>
+	<%= stylesheet_link_tag 'common' %>
+</head>
+<body>
+  
+  <div id="container">
+    
+    <% if flash[:error] %>
+      <p class="error"><%= flash[ :error ] %></p>
+    <% end %>
+    
+    <% if flash[:notice] %>
+      <p class="notice"><%= flash[ :notice ] %></p>
+    <% end %>
+    <h1 style="margin-top:20px;margin-left:450px"> S.T. Neve Bookstall  Chopda</h1>
+
+    
+    <div id="menu">
+      <ul>
+        <li>
+          <%= link_to 'Home', :controller => 'home' %>
+        </li>
+      </ul>
+  
+      <ul>
+        <li>
+          <%= link_to 'Customer', :controller => 'customers' %>
+        </li>
+      </ul>
+      
+      <ul>
+        <li>
+          <%= link_to 'Employees', :controller => 'employees' %>
+        </li>
+      </ul>
+      
+      <ul>
+        <li>
+          <%= link_to 'Papers', :controller => 'papers' %>
+        </li>
+      </ul>
+      
+       <ul>
+        <li>
+          <%= link_to 'Bill History', :controller => 'bills' %>
+        </li>
+      </ul>
+      
+       <ul>
+        <li>
+          <%= link_to 'Search Bill', :controller => 'bills', :action => 'bill_search' %>
+        </li>
+      </ul>
+      
+       <ul>
+        <li>
+          <%= link_to 'Bill Print', :controller => 'bills', :action => "bill_print" %>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="clear">
+      
+    </div>
+
+    <%= yield  %>
+  
+  </div>
+
+</body>
+</html>

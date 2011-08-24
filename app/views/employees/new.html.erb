@@ -1,0 +1,13 @@
+<h1>New Employee</h1>
+
+
+<% form_for :employee, @employee, :url => { :action => 'create' } do |c| %>
+
+  <%= render :partial => 'form', :locals => { :c => c } %>
+
+  <p>
+  <%= submit_tag 'create' %>
+  </p>
+
+<% end %>
+

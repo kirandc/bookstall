@@ -1,0 +1,32 @@
+<h1>Papers list </h1>
+<%= link_to 'Add New Paper', {:action => 'new'}, { :class => 'new' } %>
+<table class="dati">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Paper Name</th>
+      <th>Initial</th>
+      <th>Type</th>
+      <th>Day</th>
+      <th>Quntity</th>
+      <th>Price(Rs.)</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for paper in @papers %>
+      <tr>
+        <td><%= paper.id %></td>
+        <td><%= link_to paper.name, :action => "show", :id => paper.id %></td>
+        <td><%= paper.initial %></td>
+	<td><%= paper.paper_type %></td>
+        <td><%= paper.day %></td>
+        <td><%= paper.qunt %></td>
+        <td><%= paper.price %></td>
+        <td><%= link_to "Edit", :action => "show", :id => paper.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @papers %>
+

@@ -1,0 +1,36 @@
+<h1>Get Bill Print</h1>
+
+
+<% form_for :bill, @bill = Bill.new, :url => { :action => 'print' } do |c| %>
+
+  <table class="dati">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bill Reciept Type</td>
+        <td><%= select_tag  :reciept_type , options_for_select(["Small Reciept", "Large Reciept"].collect{ |p| [ p, p]}) %></td>
+      </tr>
+      <tr>
+        <td>Employee Name</td>
+        <td><%= select_tag  :employee_id , options_for_select( Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]}) %></td>
+      </tr>
+      <tr>
+        <td>Month</td>
+        <td><%= c.select :month , MONTH.collect{ |p| [ p[1] ,p[0] ]} %></td>
+      </tr>
+      <tr>
+        <td>Year</td>
+        <td><%= c.select :year , YEAR.collect{ |p| [ p ,p ]} %></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+  <%= submit_tag 'Print View' %>
+  </p>
+
+<% end %>

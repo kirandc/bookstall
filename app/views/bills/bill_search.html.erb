@@ -1,0 +1,36 @@
+<h1>Search customers bill status for month</h1>
+
+
+<% form_for :bill, @bill = Bill.new, :url => { :action => 'search' } do |c| %>
+
+  <table class="dati">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Paper</td>
+        <td><%= c.select :paper_id , Paper.all.collect{ |p| [ p.name ,p.id ]} %></td>
+      </tr>
+      <tr>
+        <td>Month</td>
+        <td><%= c.select :month , MONTH.collect{ |p| [ p[1] ,p[0] ]} %></td>
+      </tr>
+      <tr>
+        <td>Year</td>
+        <td><%= c.select :year , YEAR.collect{ |p| [ p ,p ]} %></td>
+      </tr>
+      <tr>
+        <td>Payment status</td>
+        <td><%= c.select :is_paid , [[0,'Not Paid'],[1, 'Paid']].collect{ |p| [ p[1] ,p[0] ]} %></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+  <%= submit_tag 'Search' %>
+  </p>
+
+<% end %>

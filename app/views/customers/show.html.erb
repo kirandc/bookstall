@@ -1,0 +1,14 @@
+<h1>Edit Customer</h1>
+
+
+<% form_for :customer, @customer, :url => { :action => 'update', :id => @customer.id } do |c| %>
+
+  <%= render :partial => 'form', :locals => { :c => c } %>
+
+  <p>
+  <%= submit_tag 'save' %>
+  </p>
+
+<% end %>
+
+<img src="/images/HindiMap.jpg" style="margin:20px 330px;"/>

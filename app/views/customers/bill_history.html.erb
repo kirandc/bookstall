@@ -1,0 +1,31 @@
+<h1><%= @customer.first_name %> <%= @customer.middle_name %> <%= @customer.last_name %> Bill History</h1>
+<table class="dati">
+  <thead>
+    <tr>
+      <th>Paper</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Day</th>
+      <th>Quntity</th>
+      <th>Amount</th>
+      <th>Payment Status</th>
+      <th>Bill Print</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customer.bills.each do | bill| %>
+      <tr>
+        <td><%= bill.paper.name %></td>
+        <td><%= get_month(bill.month) %></td>
+        <td><%= bill.year %></td>
+	<td><%= bill.day %></td>
+	<td><%= bill.qunt %></td>
+        <td><%= bill.amount %></td>
+        <td><%= link_to_remote bill_status(bill.is_paid), :url => { :controller => "customers", :action => "paid", :id => bill.id},  :html => {:id => "bill_#{bill.id}"}, :confirm => "Do you want to made payment? "  %></td>
+        <td><%= link_to "Print", {:controller => "customers", :action => "print", :id => bill.id} %></td>
+	<td><%= link_to "Edit", {:controller => "customers", :action => "bill_edit", :id => @customer.id, :bill_id => bill.id} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

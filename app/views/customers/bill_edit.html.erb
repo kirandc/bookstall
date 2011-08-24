@@ -1,0 +1,50 @@
+<h1>Edit Bill</h1>
+
+
+<% form_for :bill, @bill, :url => { :action => 'update_bill', :id => @bill.id, :custid => @customer.id } do |c| %>
+
+  <%= error_messages_for :bill %>
+
+<table class="dati">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Paper</td>
+      <td><%= @bill.paper.name %></td>
+    </tr>
+    <tr>
+      <td>Month</td>
+      <td><%= get_month(@bill.month) %></td>
+    </tr>
+     <tr>
+      <td>Year</td>
+      <td><%= @bill.year %></td>
+    </tr>
+    <tr>
+      <td>Day</td>
+      <td><%= c.text_field  :day %></td>
+    </tr>
+    <tr>
+      <td>Quntity</td>
+      <td><%= c.text_field  :qunt %></td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td><%= c.text_field  :amount %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+  <p>
+  <%= submit_tag 'Bill Modify' %>
+  </p>
+
+<% end %>
+
+

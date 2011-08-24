@@ -1,0 +1,12 @@
+<h1>New Paper</h1>
+
+
+<% form_for :paper, @paper, :url => { :action => 'create' } do |c| %>
+
+  <%= render :partial => 'form', :locals => { :c => c } %>
+
+  <p>
+  <%= submit_tag 'create' %>
+  </p>
+
+<% end %>

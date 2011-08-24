@@ -1,0 +1,55 @@
+<%= error_messages_for :customer %>
+
+<table class="dati">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First Name</td>
+      <td><%= c.text_field  :first_name, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %></td>
+    </tr>
+    <tr>
+      <td>Middle Name</td>
+      <td><%= c.text_field  :middle_name, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %></td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td><%= c.text_field  :last_name, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %></td>
+    </tr>
+    <tr>
+      <td>Date of Birth</td>
+      <td><%= date_select "user", "birthdate", :id => 'birthdate', :start_year => Time.now.year - 70, :end_date =>Time.now.year %></td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td><%= c.text_area  :address , :rows => 5 %></td>
+    </tr>
+    <tr>
+      <td>Phone No.</td>
+      <td><%= c.text_field  :phone_no  %></td>
+    </tr>
+    <tr>
+      <td>Mobile No.</td>
+      <td><%= c.text_field  :mobile_no %></td>
+    </tr>
+    <tr>
+      <td>Assign Employee</td>
+      <td><%= c.select  :employee_id, Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]} %></td>
+    </tr>
+    <tr>
+      <td>Select Custome Papers</td>
+    </tr>
+    <% counter = 1%>
+    <% @papers.each do |paper| %>
+      <%= "<tr>" if counter % 2 == 1 %> 
+        <td><%= check_box_tag "papers[]", paper.id, get_customer_paper(@customer, paper.id) %><%= paper.name %></td>
+        <%= "</tr>" if counter % 2 == 0 %>
+      <% counter += 1%>
+    <% end %>
+    <%= "</tr>" if counter % 2 == 1 %>
+</tbody>
+</table>

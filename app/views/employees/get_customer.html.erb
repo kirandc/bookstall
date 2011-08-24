@@ -1,0 +1,32 @@
+<h1>Get Customers of employee</h1>
+
+
+<% form_for :customer, @customer = Customer.new, :url => { :action => 'customer_view' } do |c| %>
+
+  <table class="dati">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Employee</td>
+        <td><%= select_tag :emp ,  options_for_select(Employee.all.collect{ |p| [ "#{p.initial}, #{p.name}" ,p.id ]}) %></td>
+      </tr>
+      <tr>
+        <td>Month</td>
+        <td><%= select_tag :month ,  options_for_select(MONTH.collect{ |p| [ p[1] ,p[0] ]}) %></td>
+      </tr>
+      <tr>
+        <td>Year</td>
+        <td><%= select_tag :year ,  options_for_select(YEAR.collect{ |p| [ p ,p ]}) %></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+  <%= submit_tag 'Customer View' %>
+  </p>
+
+<% end %>

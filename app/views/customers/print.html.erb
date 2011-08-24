@@ -1,0 +1,13 @@
+  <div style="width:410px;height:288px;border: 1px solid;padding-top:15px;margin-top:5px;">
+	<div style="width:400px;font-weight:bold;font-size:20px;"><center><b>Agent : S. T. NEVE </b></center></div>
+	<div style="width:400px;font-size:18px;"><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </div>
+	<div style="width:400px"><center>(02586) 223547 </center></div>
+	<div style="float: left;width:400px;"><span style="float:left;margin-left:8px;font-size:18px;">Customer Id : <b><%= @bill.customer.custid %></b></span><span style="float:right;margin-right:5px">Date: <b>  &nbsp; / &nbsp;  / <%= Time.now.year %></b></span></div>
+	<div style="width:400px;margin-left:8px;">Name: <b><%= @bill.customer.first_name %> <%= @bill.customer.middle_name %> <%= @bill.customer.last_name %></b></div>
+	<div style="width:400px;margin-left:8px;">Paper:
+	  <%= @bill.paper.name %> - <%= @bill.day %>
+	</div>
+	<div style="width:400px;margin-left:8px;">Month/Year: <span style="font-size:18px;"><b><%= get_month(@bill.month.to_i) %> / <%= @year %></b></span></div>
+	<div style="width:400px;margin-left:8px;">Total amount: <span style="font-size:18px;"><b><%= @bill.amount %></b></span></div>
+	<div style="float:right;margin-right:90px;">Signature</div>	    
+   </div>	

@@ -1,0 +1,41 @@
+<%= error_messages_for :paper %>
+
+<table class="dati">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td><%= c.text_field  :name, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %></td>
+    </tr>
+    <tr>
+      <td>Initial</td>
+      <td><%= c.text_field  :initial, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %></td>
+    </tr>
+     <tr>
+      <td>Type</td>
+      <td><%= c.select  :paper_type, ['News paper', 'Magzine'].collect{ |p| [p, p]} %></td>
+    </tr>
+    <tr>
+      <td>Paper type (monthly/yearly)</td>
+      <td><%= c.select  :paper_month_year, CUSTOMER_TYPE.collect{ |ct| [ ct, ct]} %></td>
+    </tr>
+
+    <tr>
+      <td>Day</td>
+      <td><%= c.text_field  :day %></td>
+    </tr>
+    <tr>
+      <td>Quntity</td>
+      <td><%= c.text_field :qunt %></td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td><%= c.text_field  :price %></td>
+    </tr>
+  </tbody>
+</table>
