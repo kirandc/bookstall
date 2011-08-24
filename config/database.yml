@@ -14,7 +14,7 @@ test:
   database: bookstall
   username: root
   password:
-  socket: /var/lib/mysql/mysql.sock
+  socket: 
 
 
 production:
@@ -22,4 +22,4 @@ production:
   database: bookstall
   username: root
   password: 
-  socket: /var/lib/mysql/mysql.sock
+  socket: 
