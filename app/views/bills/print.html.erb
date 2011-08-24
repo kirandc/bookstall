@@ -41,7 +41,7 @@
     <% counter = 1%>
     <div style="width:850px;">
       <% @customers.each do | customer | %>
-        <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+        <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month.to_i, @year.to_i]) %>
         <% check_monthly = false %>
         <% customer_bills.each do |customer_bill| %>
             <% check_monthly = true if customer_bill.paper.paper_month_year == "Monthly"  %>
