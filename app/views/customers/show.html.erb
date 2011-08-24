@@ -1,7 +1,7 @@
 <h1>Edit Customer</h1>
 
 
-<% form_for :customer, @customer, :url => { :action => 'update', :id => @customer.id } do |c| %>
+<% form_for :customer, @customer, :url => { :action => 'update', :id => @customer.id }, :html => {:method => :put} do |c| %>
 
   <%= render :partial => 'form', :locals => { :c => c } %>
 

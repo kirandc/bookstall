@@ -1,5 +1,3 @@
-<%= error_messages_for :bill_history %>
-
 <table class="dati">
   <thead>
     <tr>
@@ -10,11 +8,11 @@
   <tbody>
     <tr>
       <td>Month</td>
-      <td><%= c.select :month , MONTH.collect{ |p| [ p[1] ,p[0] ]} %></td>
+      <td><%= c.select :month , MONTH.collect{ |p| [ p[1] ,p[0] ]} %><%= @bill_history.errors[:month]%></td>
     </tr>
     <tr>
       <td>Year</td>
-      <td><%= c.select :year , YEAR.collect{ |p| [ p ,p ]} %></td>
+      <td><%= c.select :year , YEAR.collect{ |p| [ p ,p ]} %><%= @bill_history.errors[:year]%></td>
     </tr>
   </tbody>
 </table>

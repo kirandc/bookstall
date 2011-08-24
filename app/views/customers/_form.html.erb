@@ -1,5 +1,3 @@
-<%= error_messages_for :customer %>
-
 <table class="dati">
   <thead>
     <tr>
@@ -10,7 +8,7 @@
   <tbody>
     <tr>
       <td>First Name</td>
-      <td><%= c.text_field  :first_name, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %></td>
+      <td><%= c.text_field  :first_name, :onkeypress=>"if (!isEng){ return change(this,event);} else {return true;}", :onfocus=>"changeCursor(this);", :onclick=>"changeCursor(this);", :onkeyup=>"changeCursor(this);", :onkeydown=>"positionChange(event);"  %><%= @customer.errors[:first_name] %></td>
     </tr>
     <tr>
       <td>Middle Name</td>
@@ -38,7 +36,7 @@
     </tr>
     <tr>
       <td>Assign Employee</td>
-      <td><%= c.select  :employee_id, Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]} %></td>
+      <td><%= c.select  :employee_id, Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]} %> <%= @customer.errors[:employee_id]%></td>
     </tr>
     <tr>
       <td>Select Custome Papers</td>
