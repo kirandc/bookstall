@@ -7,7 +7,7 @@ class CreateBills < ActiveRecord::Migration
       t.integer :year
       t.integer :qunt
       t.integer :day
-      t.boolean :is_paid, :default => 0
+      t.boolean :is_paid, :default => false
       t.string :amount
       t.timestamps
     end
