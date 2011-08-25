@@ -2,7 +2,7 @@
   <% @customers.each do | customer| %>
     <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
     <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
-    <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size < 35and  customer.customer_type == "Monthly"%>
+    <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 35and  customer.customer_type == "Monthly"%>
       <div style="width:600px;height:960px;border: 1px solid;margin-left:100px;margin-bottom:20px;">
       <div style="width:600px;font-weight:bold:font-size:15px;"><center><b>Agent : S. T. NEVE </b></center></div>
       <div style="width:600px"><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </div>
