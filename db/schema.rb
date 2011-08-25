@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120171926) do
+ActiveRecord::Schema.define(:version => 20110825073403) do
 
   create_table "bill_histories", :force => true do |t|
     t.integer  "paper_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20110120171926) do
     t.integer  "qunt"
     t.integer  "day"
     t.boolean  "is_paid",     :default => false
-    t.string   "amount"
+    t.float    "amount",      :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
