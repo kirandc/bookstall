@@ -50,25 +50,27 @@
         <% if !customer_bills.blank? and customer_bills.size <= 5 and check_monthly == true %>
         <% if  counter % 2 == 0 %> <% align= "right"%><%else%><% align= "left"%><%end%>
           <table align="<%= align %>" width="410" style="border: 1px solid;">          
-            <tr><td><center><b>Agent : S. T. NEVE </b></center></td></tr>
+            <tr><td><center><b>Agent : S. T. NEVE (02586) 223547</b></center></td></tr>
             <tr><td><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </td></tr>
-            <tr><td><center>(02586) 223547 </center></td></tr>
             <tr><td><span style="float:left;margin-left:8px;font-size:18px;">Customer Id : <b><%= customer.custid %></b></span><span style="float:right;margin-right:5px">Date: <b>  &nbsp; / &nbsp;  / <%= Time.now.year %></b></span></td></tr>
             <tr><td>Name: <b><%= customer.first_name %> <%= customer.middle_name %> <%= customer.last_name %></b></td></tr>
-            <tr><td>Paper:
+            <tr><td>
+                <div style="height:50px;font-size:18px;">
+                Paper:
                 <% total = 0.0 %>
                 <% customer_bills.each do |customer_bill| %>
                   <% if customer_bill.paper.paper_month_year == "Monthly" %>  
-                    <span style="font-size:18px;"><%= customer_bill.paper.name %> - <%= customer_bill.day %></span>
+                    <%= customer_bill.paper.name %> - <%= customer_bill.day %>
                     <% total += customer_bill.amount.to_f %>
                   <% end %>
-                <% end %></td></tr>
+                <% end %></div></td></tr>
             <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
             <tr><td>Pending amount: <%= pending_amount %></td></tr>
             <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  pending_amount.to_f %></b></span></td></tr>
             <tr><td><span style="float:right;">Signature</span></td></tr>	    
           </table>	    
         <% if  counter % 2 == 0  %><div style="clear: both;height:15px;width:810px;"></div><%end%>
+        <% if  counter % 8 == 0  %><div style="clear: both;height:18px;width:810px;"></div><%end%>
           <% counter += 1%>	
         <% end %>
         <% end if !@customers.blank?%>
