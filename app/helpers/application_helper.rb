@@ -15,7 +15,7 @@ def get_month(month)
 	when 6
 	  "Jun"
 	when 7
-	  "Jul"
+	  "July"
 	when 8
 	  "Aug"
 	when 9
