@@ -106,15 +106,15 @@
                     <% total += customer_bill.amount.to_f %>
                   <% end %>
                 <% end %></div></td></tr>
-          <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
-          <tr><td>Pending amount: <%= pending_amount %></td></tr>
-          <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  pending_amount.to_f %></b></span></td></tr>
-          <tr><td><span style="float:right;">Signature</span></td></tr>	    
-        </table>	    
-      <% if  counter % 2 == 0  %><div style="clear: both;height:35px;width:810px;"></div><%end%>
-      <% if  counter % 8 == 0  %><div style="clear: both;height:85px;width:810px;"></div><%end%>
-        <% counter += 1%>	
-      <% end %>
-      <% end if !@customers.blank?%>
-    </div>
-  <% end %>
+            <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
+            <tr><td>Pending amount: <%= pending_amount %></td></tr>
+            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  pending_amount.to_f %></b></span></td></tr>
+            <tr><td><span style="float:right;">Signature</span></td></tr>	    
+          </table>	    
+        <% if  counter % 2 == 0  %><div style="clear: both;height:45px;width:810px;"></div><%end%>
+        <% if  counter % 8 == 0  %><div style="clear: both;height:95px;width:810px;"></div><%end%>
+          <% counter += 1%>	
+        <% end %>
+        <% end if !@customers.blank?%>
+      </div>
+    <% end %>
