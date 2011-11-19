@@ -39,6 +39,10 @@
       <td><%= c.select  :employee_id, Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]} %> <%= @customer.errors[:employee_id]%></td>
     </tr>
     <tr>
+      <td>Discount</td>
+      <td><%= c.text_field  :discount %></td>
+    </tr>
+    <tr>
       <td>Select Custome Papers</td>
     </tr>
     <% counter = 1%>

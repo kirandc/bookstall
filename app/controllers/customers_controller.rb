@@ -93,6 +93,8 @@ class CustomersController < ApplicationController
 	@bill = Bill.find(params[:id])
 	@customer = Customer.find(params[:custid])
 	@bill.update_attributes(params[:bill])
+  @bill.amount = (@bill.qunt * @bill.paper.price.to_f)
+  @bill.save
 	  flash[ :notice ] = "Bill Sucessfully updated"
     redirect_to :action => 'bill_history', :id => @customer.id
   rescue ActiveRecord::RecordInvalid
