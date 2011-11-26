@@ -17,12 +17,12 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
-    @papers = Paper.all
+    @papers = Paper.order("created_at asc")
   end
 
   def show
     @customer = Customer.find(params[:id])
-    @papers = Paper.all
+    @papers = Paper.order("created_at asc")
   end
 
   def create
@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
     flash[ :notice ] = "Customer Sucessfully created"
     redirect_to :action => 'index'
   rescue ActiveRecord::RecordInvalid
-    @papers = Paper.all
+    @papers = Paper.order("created_at asc")
     render :action => 'new'
   end
 
@@ -55,7 +55,7 @@ class CustomersController < ApplicationController
     flash[ :notice ] = "Customer Sucessfully updated"
     redirect_to :action => 'index'
   rescue ActiveRecord::RecordInvalid
-    @papers = Paper.all
+    @papers = Paper.order("created_at asc")
     render :action => 'show'
   end
 
