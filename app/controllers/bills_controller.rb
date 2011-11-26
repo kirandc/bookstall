@@ -9,9 +9,9 @@ class BillsController < ApplicationController
 
 
   def create
-    @bill_history = BillHistory.new(params[:bill_history])
+    @bill_history = BillHistory.new(params[:bill_history])    
     @bill_history.save!
-    @customers = Customer.all
+    @customers = @bill_history.employee.customers
     @customers.each do | customer|
     customer.customer_papers.each do |customer_paper|
       Bill.create!(:customer_id => customer_paper.customer.id, :paper_id => customer_paper.paper_id, :day => customer_paper.paper.day, :qunt => customer_paper.paper.qunt, :month => @bill_history.month, :year => @bill_history.year, :amount => customer_paper.paper.price.to_f )
@@ -27,7 +27,8 @@ class BillsController < ApplicationController
   def destroy
     @bill_history = BillHistory.find(params[:id])
     if !@bill_history.blank?
-      @bills = Bill.find(:all, :conditions => ["month = ? and year = ?", @bill_history.month, @bill_history.year])
+      cus_id = @bill_history.employee.customers.collect(&:id)
+      @bills = Bill.find(:all, :conditions => ["month = ? and year = ? and customer_id IN(?)", @bill_history.month, @bill_history.year, cus_id])
       @bills.each do |bill|
         bill.destroy
       end if !@bills.blank?

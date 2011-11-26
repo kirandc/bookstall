@@ -14,5 +14,10 @@
       <td>Year</td>
       <td><%= c.select :year , YEAR.collect{ |p| [ p ,p ]} %><%= @bill_history.errors[:year]%></td>
     </tr>
+    <tr>
+      <td>Employee Name</td>
+      <td><%= c.select :employee_id , Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]} %></td>
+    </tr>
+
   </tbody>
 </table>
