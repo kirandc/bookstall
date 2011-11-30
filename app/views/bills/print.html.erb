@@ -32,8 +32,8 @@
       <% end %>
       <tr><td colspan="4"><hr/></td></tr>
       <tr><td colspan="4" style="font-size:14px;">Total amount: <%= total.to_f +  pending_amount.to_f %></td></tr>
-      <tr><td colspan="4" style="font-size:14px;">Discount: <%= customer.discount %>%</td></tr>
-      <tr><td colspan="4" style="font-size:14px;">Paid amount: <%= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr>
+      <!--  <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
+      <tr><td colspan="4" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
       <tr><td>Signature</td></tr>
       </table>
       </div>
@@ -74,8 +74,9 @@
           <% end %>
           <tr><td colspan="4"><hr/></td></tr>
           <tr><td colspan="4" style="font-size:14px;">Total amount: <%= total.to_f +  pending_amount.to_f %></td></tr>
-          <tr><td colspan="4" style="font-size:14px;">Discount: <%= customer.discount %>%</td></tr>
-          <tr><td>Signature</td><td colspan="3" style="font-size:14px;">Paid amount: <%= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr>
+          <!-- <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
+          <tr><td>Signature</td><td colspan="3" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
+          <tr><td>Signature</td></tr>
         </table>
       </div>
     </div>
