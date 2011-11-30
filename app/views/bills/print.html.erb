@@ -84,7 +84,7 @@
   <% end if !@customers.blank?%>
 <% else %>
   <% counter = 1%>
-  <div style="width:850px;">
+  <div style="width:845px;">
     <% @customers.each do | customer | %>
       <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
       <% check_monthly = false %>
