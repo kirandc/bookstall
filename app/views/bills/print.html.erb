@@ -92,7 +92,7 @@
       <% customer_bills.each do |customer_bill| %>
         <% check_monthly = true if customer_bill.paper.paper_month_year == "Monthly"  %>
       <% end %>
-      <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
+      <%# pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
       <% if !customer_bills.blank? and customer_bills.size <= 5 and check_monthly == true %>
       <% if  counter % 2 == 0 %> <% align= "right"%><%else%><% align= "left"%><%end%>
         <table align="<%= align %>" width="410" height:"260px" style="border: 1px solid;">          
@@ -111,8 +111,8 @@
                   <% end %>
                 <% end %></div></td></tr>
             <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
-            <tr><td>Pending amount: <%= pending_amount %></td></tr>
-            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  pending_amount.to_f %></b></span></td></tr>
+            <tr><td>Service Charge: <%= @employee.service_charge ? '5.00' : '0.00' %></td></tr>
+            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  (@employee.service_charge ? 5 : 0) %></b></span></td></tr>
             <tr><td><span style="float:right;">Signature</span></td></tr>	    
           </table>	    
         <% if  counter % 2 == 0  %><div style="clear: both;height:52px;width:810px;"></div><%end%>

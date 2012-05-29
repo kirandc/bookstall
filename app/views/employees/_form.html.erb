@@ -15,5 +15,9 @@
       <td>Initial</td>
       <td><%= c.text_field  :initial %><%= @employee.errors[:initial]%></td>
     </tr>
+    <tr>
+      <td>Service Charges</td>
+      <td><%= c.check_box  :service_charge %><%= @employee.errors[:service_charge]%></td>
+    </tr>
 </tbody>
 </table>

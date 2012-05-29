@@ -6,6 +6,7 @@
     <tr>
       <th>Employee Name</th>
       <th>Employee initial</th>
+      <th>Service Charge</th>
       <th colspan=3>Action</th>
     </tr>
   </thead>
@@ -13,10 +14,11 @@
     <% for  employee in @employees %>
       <tr>
         <td><%= link_to "#{employee.name}", :action => "show", :id => employee.id %></td>
-	<td><%= employee.initial%></td>
-          <td><%= link_to "Edit", {:action => "show", :id => employee.id} %></td>
-          <td><%= link_to "Delete", {:action => "destroy", :id => employee.id}, :method => :delete, :confirm => "Do you want to delete this employee?" %></td>
-          <td><%= link_to "Customers List", {:action => "customer_list", :id => employee.id} %></td>
+        <td><%= employee.initial%></td>
+        <td><%= employee.service_charge ? 'Yes' : 'No'%></td>
+        <td><%= link_to "Edit", {:action => "show", :id => employee.id} %></td>
+        <td><%= link_to "Delete", {:action => "destroy", :id => employee.id}, :method => :delete, :confirm => "Do you want to delete this employee?" %></td>
+        <td><%= link_to "Customers List", {:action => "customer_list", :id => employee.id} %></td>
         </tr>
         <% end if @employees%>
       </tbody>

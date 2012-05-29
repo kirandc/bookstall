@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119151404) do
+ActiveRecord::Schema.define(:version => 20120529163037) do
 
   create_table "bill_histories", :force => true do |t|
     t.integer  "paper_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20111119151404) do
     t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "bills", :force => true do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20111119151404) do
     t.string   "initial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "service_charge", :default => false
   end
 
   create_table "papers", :force => true do |t|
