@@ -111,8 +111,9 @@
                   <% end %>
                 <% end %></div></td></tr>
             <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
-            <tr><td>Service Charge: <%= @employee.service_charge ? '5.00' : '0.00' %></td></tr>
-            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  (@employee.service_charge ? 5 : 0) %></b></span></td></tr>
+            <% service_charge = (@employee.service_charge or customer.service_charge) ? '5.00' : '0.00' %>
+            <tr><td>Service Charge: <%= service_charge %></td></tr>
+            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  service_charge.to_f %></b></span></td></tr>
             <tr><td><span style="float:right;">Signature</span></td></tr>	    
           </table>	    
         <% if  counter % 2 == 0  %><div style="clear: both;height:52px;width:810px;"></div><%end%>

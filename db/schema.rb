@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529163037) do
+ActiveRecord::Schema.define(:version => 20120530171240) do
 
   create_table "bill_histories", :force => true do |t|
     t.integer  "paper_id"
@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(:version => 20120529163037) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "birthdate"
-    t.string   "customer_type", :default => "Monthly"
-    t.integer  "discount",      :default => 0
+    t.string   "customer_type",  :default => "Monthly"
+    t.integer  "discount",       :default => 0
+    t.boolean  "service_charge", :default => false
   end
 
   create_table "employees", :force => true do |t|
