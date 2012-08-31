@@ -94,7 +94,7 @@
       <% end %>
       <%# pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
       <% if !customer_bills.blank? and customer_bills.size <= 5 and check_monthly == true %>
-      <% if  counter % 2 == 0 %> <% align= "right"%><%else%><% align= "left"%><%end%>
+        <% if  counter % 2 == 0 %> <% align= "right"%><%else%><% align= "left"%><%end%>
         <table align="<%= align %>" width="410" height:"260px" style="border: 1px solid;">          
           <tr><td><center><b>Agent : S. T. NEVE (02586) 223547</b></center></td></tr>
           <tr><td><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </td></tr>
@@ -110,16 +110,16 @@
                     <% total += customer_bill.amount.to_f %>
                   <% end %>
                 <% end %></div></td></tr>
-            <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
-            <% service_charge = (@employee.service_charge or customer.service_charge) ? '5.00' : '0.00' %>
-            <tr><td>Service Charge: <%= service_charge %></td></tr>
-            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  service_charge.to_f %></b></span></td></tr>
-            <tr><td><span style="float:right;">Signature</span></td></tr>	    
-          </table>	    
-        <% if  counter % 2 == 0  %><div style="clear: both;height:52px;width:810px;"></div><%end%>
-        <% if  counter % 8 == 0  %><div style="clear: both;height:107px;width:810px;"></div><%end%>
-          <% counter += 1%>	
-        <% end %>
-        <% end if !@customers.blank?%>
-      </div>
-    <% end %>
+          <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
+          <% service_charge = (@employee.service_charge or customer.service_charge) ? '5.00' : '0.00' %>
+          <tr><td>Service Charge: <%= service_charge %></td></tr>
+          <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  service_charge.to_f %></b></span></td></tr>
+          <tr><td><span style="float:right;">Signature</span></td></tr>	    
+        </table>	    
+        <% if  counter % 2 == 0  %><div style="clear: both;height:50px;width:810px;"></div><%end%>
+        <% if  counter % 8 == 0  %><div style="clear: both;height:15px;width:810px;"></div><%end%>
+        <% counter += 1%>	
+      <% end %>
+      <% end if !@customers.blank?%>
+    </div>
+  <% end %>

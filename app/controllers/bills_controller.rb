@@ -51,15 +51,15 @@ class BillsController < ApplicationController
   end
 
   def print
-	@reciept_type = params[:reciept_type] 
-  @employee = Employee.find(params[:employee_id])
-  if not params[:employee_id].blank?
-    @customers = Customer.find(:all, :conditions => ["employee_id = ?", params[:employee_id]])
-  else
-    @customers = Customer.find(:all, :order => "custid ASC")
-  end
-	@month = params[:bill][:month]
-	@year = params[:bill][:year]
+    @reciept_type = params[:reciept_type] 
+    @employee = Employee.find(params[:employee_id])
+    if not params[:employee_id].blank?
+      @customers = Customer.find(:all, :conditions => ["employee_id = ?", params[:employee_id]])
+    else
+      @customers = Customer.find(:all, :order => "custid ASC")
+    end
+    @month = params[:bill][:month]
+    @year = params[:bill][:year]
     render :layout => false
   end
 end
