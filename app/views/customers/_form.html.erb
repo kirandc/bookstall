@@ -38,10 +38,12 @@
       <td>Assign Employee</td>
       <td><%= c.select  :employee_id, Employee.all.collect{ |e| [ "#{e.initial}, #{e.name}", e.id]} %> <%= @customer.errors[:employee_id]%></td>
     </tr>
+    <!--
     <tr>
       <td>Discount</td>
-      <td><%= c.text_field  :discount %></td>
+      <td><%#= c.text_field  :discount %></td>
     </tr>
+    -->
     <tr>
       <td>Service Charge</td>
       <td><%= c.check_box  :service_charge %></td>
