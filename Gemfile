@@ -7,6 +7,8 @@ gem 'rails', '3.0.3'
 #gem 'mislav-will_paginate',  '~> 2.3.2', :require=> 'will_paginate'
 gem 'will_paginate', '>=3.0.pre'
 gem 'mysql2', '< 0.3'
+
+gem 'newrelic_rpm'
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
