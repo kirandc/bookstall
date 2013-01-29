@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  USER, PASSWORD = 'rupesh', '#rupesh123#'
+  USER, PASSWORD = 'rupesh', 'rupesh123'
 
   before_filter :authentication_check
   private
