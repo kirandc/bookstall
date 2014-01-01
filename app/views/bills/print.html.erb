@@ -102,7 +102,7 @@
       <%# pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
       <% if !customer_bills.blank? and customer_bills.size <= 5 and check_monthly == true %>
         <% if  counter % 2 == 0 %> <% align = "right"%><%else%><% align = "left"%><%end%>
-        <% if  counter % 8 == 0  %><div style="clear: both;height:1100;"><%end%>
+        <% if  counter % 8 == 0 or counter == 1 %><div style="clear: both;height:1100;"><%end%>
         <table align="<%= align %>" width="410" height="260px" style="border: 1px solid;">          
           <tr><td><center><b>Agent : S. T. NEVE (02586) 223547</b></center></td></tr>
           <tr><td><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </td></tr>
@@ -125,8 +125,8 @@
           <tr><td><span style="float:right;">Signature</span></td></tr>	    
         </table>	    
         <% if  counter % 2 == 0  %><div style="clear: both;height:12px;width:810px;"></div><%end%>
-        <% counter += 1%>	
         <% if  counter % 8 == 0  %></div><%end%>
+        <% counter += 1%>	
       <% end %>
       <% end if !@customers.blank?%>
     </div>
