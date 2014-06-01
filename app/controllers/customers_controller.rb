@@ -13,6 +13,7 @@ class CustomersController < ApplicationController
     else
       @customers = Customer.paginate( :all, :order => 'created_at ASC', :page => params[:page], :per_page => 100)
     end
+    session["request_id"] = nil
   end
 
   def new
@@ -53,7 +54,12 @@ class CustomersController < ApplicationController
       end if not params[:papers].blank?
     end
     flash[ :notice ] = "Customer Sucessfully updated"
-    redirect_to :action => 'index'
+    if session["request_id"].blank?
+      redirect_to :action => :index 
+    else
+      redirect_to customer_list_employee_path(:id => session["request_id"])
+    end
+    session["request_id"] = nil
   rescue ActiveRecord::RecordInvalid
     @papers = Paper.order("created_at asc")
     render :action => 'show'
