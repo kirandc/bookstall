@@ -2,7 +2,7 @@
   <% @customers.each do | customer| %>
     <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
     <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
-    <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 33 and  customer.customer_type == "Monthly"%>
+    <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 100 and  customer.customer_type == "Monthly"%>
     <div style="height:1000px">
     <table style="border: 1px solid">
     <tr>
