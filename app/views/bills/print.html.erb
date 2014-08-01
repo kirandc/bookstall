@@ -1,52 +1,24 @@
 <% if @reciept_type == "Large Reciept" %>
-  <% @customers.each do | customer| %>
-    <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
-    <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
-    <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 100 and  customer.customer_type == "Monthly"%>
-    <div style="height:1000px">
-    <table style="border: 1px solid">
-    <tr>
-    <td>
-      <div>
-      <div style="width:600px;font-weight:bold:font-size:15px;"><center><b>Agent : S. T. NEVE </b></center></div>
-      <div style="width:600px"><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </div>
-      <div style="width:600px"><center>(02586) 223547 </center></div>
-      <div style="float: right; margin-right: 40px; margin-left: 210px;">Date:   &nbsp; / &nbsp;  /&nbsp;<%= Time.now.year %></div>
-      <div style="width:600px;margin-left:8px;">Customer ID: <%= customer.custid %></div>
-      <div style="width:600px;margin-left:8px;">Month/Year: <%= get_month(@month.to_i) %> / <%= @year %></div>
-      <div style="width:600px;margin-left:8px;">Name: <%= customer.first_name %> <%= customer.middle_name %> <%= customer.last_name %></div>
-      <table width="100%" style="border: 1px solid">
+  <h1>Large Receipt <%= @customers.last.employee.name if !@customers.blank? and !@customers.last.employee.blank?%></h1>
+  <table>
+    <thead>
       <tr>
-      <th style="float:left">Paper</th>
-      <th>Day</th>
-      <th>Qnty</th>
-      <th>Price</th>
+        <th>Customer Name</th>
+        <th>Action</th>
       </tr>
-      <tr><td colspan="4" style="font-size:14px;"><hr></td></tr>
-      <% total = 0.0 %>
-      <% customer_bills.each do |customer_bill| %>
-        <% if customer_bill.paper.paper_month_year == "Monthly" %>  
-          <tr>
-          <td><%= customer_bill.paper.name %> </td><td><center><%= get_paper_day(customer_bill.paper) %></center> </td><td><center> <%= get_paper_qunt(customer_bill.paper) %> </center></td><td><center><%= customer_bill.amount %></center></td>
-          </tr>
-          <% total += customer_bill.amount.to_f %>
-        <%end%>
-      <% end %>
-      <tr><td colspan="4"><hr/></td></tr>
-      <% service_charge = (@employee.service_charge or customer.service_charge) ? '5.00' : '0.00' %>
-      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Service Charge: <%= service_charge %></td></tr>
-      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Total amount: <b><%= ((total.to_f +  pending_amount.to_f) + service_charge.to_f).to_f %></b></td></tr>
-      <!--  <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
-      <tr><td colspan="4" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
-      <tr><td>Signature</td></tr>
-      </table>
-      </div>
-      </td>
-      </tr>
-      </table>
-      </div>
-    <% end %>
+    </thead>
+  <tbody>
+  <% @customers.each do | customer| %>
+      <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+      <% if !customer_bills.blank? and customer_bills.size > 13 and  customer.customer_type == "Monthly"%>
+        <tr>
+          <td><%= customer.first_name %> <%= customer.middle_name %> <%= customer.last_name %></td>
+          <td> <%= link_to "Print", {:controller => "bills", :action => "large_bill", :id => customer.id, :month => @month, :year => @year}, :target => "blank" %></td>
+        </tr>
+      <%end%>
     <% end if !@customers.blank?%>
+    </tbody>
+  </table>
   <% elsif @reciept_type == "Middle Reciept" %>
     <% @customers.each do | customer| %>
       <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
@@ -104,30 +76,30 @@
       <% if !customer_bills.blank? and customer_bills.size <= 5 and check_monthly == true %>
         <% if  counter % 2 == 0 %> <% align = "right"%><%else%><% align = "left"%><%end%>
         <% if  counter1 % 8 == 0 or counter1 == 0 %><div style="clear: both; height: 1100px; margin-bottom: 131px;"><%end%>
-        <table align="<%= align %>" width="410" height="260px" style="border: 1px solid;">          
-          <tr><td><center><b>Agent : S. T. NEVE (02586) 223547</b></center></td></tr>
-          <tr><td><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </td></tr>
-          <tr><td><span style="float:left;margin-left:8px;font-size:18px;">Customer Id : <b><%= customer.custid %></b></span><span style="float:right;margin-right:5px">Date: <b>  &nbsp; / &nbsp;  / <%= Time.now.year %></b></span></td></tr>
-          <tr><td>Name: <b><%= customer.first_name %> <%= customer.middle_name %> <%= customer.last_name %></b></td></tr>
-          <tr><td>
-              <div style="font-size:18px;">
-                Paper:
-                <% total = 0.0 %>
-                <% customer_bills.each do |customer_bill| %>
-                  <% if customer_bill.paper.paper_month_year == "Monthly" %>  
-                    <%= customer_bill.paper.name %> - <%= customer_bill.day %>
-                    <% total += customer_bill.amount.to_f %>
-                  <% end %>
-                <% end %></div></td></tr>
-          <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
-          <% service_charge = (@employee.service_charge or customer.service_charge) ? '5.00' : '0.00' %>
-          <tr><td>Service Charge: <%= service_charge %></td></tr>
-          <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  service_charge.to_f %></b></span></td></tr>
-          <tr><td><span style="float:right;">Signature</span></td></tr>	    
-        </table>	    
-        <% if  counter % 2 == 0  %><div style="clear: both;height:15px;width:810px;"></div><%end%>
-        <% counter1 += 1%>	
-        <% if  counter1 % 8 == 0 %></div><%end%>
+          <table align="<%= align %>" width="410" height="260px" style="border: 1px solid;">          
+            <tr><td><center><b>Agent : S. T. NEVE (02586) 223547</b></center></td></tr>
+            <tr><td><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </td></tr>
+            <tr><td><span style="float:left;margin-left:8px;font-size:18px;">Customer Id : <b><%= customer.custid %></b></span><span style="float:right;margin-right:5px">Date: <b>  &nbsp; / &nbsp;  / <%= Time.now.year %></b></span></td></tr>
+            <tr><td>Name: <b><%= customer.first_name %> <%= customer.middle_name %> <%= customer.last_name %></b></td></tr>
+            <tr><td>
+                <div style="font-size:18px;">
+                  Paper:
+                  <% total = 0.0 %>
+                  <% customer_bills.each do |customer_bill| %>
+                    <% if customer_bill.paper.paper_month_year == "Monthly" %>  
+                      <%= customer_bill.paper.name %> - <%= customer_bill.day %>
+                      <% total += customer_bill.amount.to_f %>
+                    <% end %>
+                  <% end %></div></td></tr>
+            <tr><td>Month/Year: <span style="font-size:18px;"><b><%= get_month(@month.to_i) %> / <%= @year %></b></span></td></tr>
+            <% service_charge = (@employee.service_charge or customer.service_charge) ? '5.00' : '0.00' %>
+            <tr><td>Service Charge: <%= service_charge %></td></tr>
+            <tr><td>Total amount: <span style="font-size:18px;"><b><%= total.to_f +  service_charge.to_f %></b></span></td></tr>
+            <tr><td><span style="float:right;">Signature</span></td></tr>	    
+          </table>	    
+          <% if  counter % 2 == 0  %><div style="clear: both;height:15px;width:810px;"></div><%end%>
+          <% counter1 += 1%>	
+          <% if  counter1 % 8 == 0 %></div><%end%>
         <% counter += 1%>	
       <% end %>
       <% end if !@customers.blank?%>

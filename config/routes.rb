@@ -35,6 +35,7 @@ TestApp::Application.routes.draw do
     collection do
       get 'bill_search'
       get 'bill_print'
+      get 'large_bill'
       post 'search'
       post 'print'
     end

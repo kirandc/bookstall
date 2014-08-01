@@ -1,0 +1,46 @@
+<% customer_bills = @customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+<% pending_amount = @customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
+<% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 100 and  @customer.customer_type == "Monthly"%>
+  <div style="height:1000px">
+    <table style="border: 1px solid">
+      <tr>
+        <td>
+          <div>
+            <div style="width:600px;font-weight:bold:font-size:15px;"><center><b>Agent : S. T. NEVE </b></center></div>
+            <div style="width:600px"><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </div>
+            <div style="width:600px"><center>(02586) 223547 </center></div>
+            <div style="float: right; margin-right: 40px; margin-left: 210px;">Date:   &nbsp; / &nbsp;  /&nbsp;<%= Time.now.year %></div>
+            <div style="width:600px;margin-left:8px;">Customer ID: <%= @customer.custid %></div>
+            <div style="width:600px;margin-left:8px;">Month/Year: <%= get_month(@month.to_i) %> / <%= @year %></div>
+            <div style="width:600px;margin-left:8px;">Name: <%= @customer.first_name %> <%= @customer.middle_name %> <%= @customer.last_name %></div>
+            <table width="100%" style="border: 1px solid">
+              <tr>
+                <th style="float:left">Paper</th>
+                <th>Day</th>
+                <th>Qnty</th>
+                <th>Price</th>
+              </tr>
+              <tr><td colspan="4" style="font-size:14px;"><hr></td></tr>
+              <% total = 0.0 %>
+              <% customer_bills.each do |customer_bill| %>
+                <% if customer_bill.paper.paper_month_year == "Monthly" %>  
+                  <tr>
+                    <td><%= customer_bill.paper.name %> </td><td><center><%= get_paper_day(customer_bill.paper) %></center> </td><td><center> <%= get_paper_qunt(customer_bill.paper) %> </center></td><td><center><%= customer_bill.amount %></center></td>
+                  </tr>
+                  <% total += customer_bill.amount.to_f %>
+                <%end%>
+              <% end %>
+              <tr><td colspan="4"><hr/></td></tr>
+              <% service_charge = (@employee.service_charge or @customer.service_charge) ? '5.00' : '0.00' %>
+              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Service Charge: <%= service_charge %></td></tr>
+              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Total amount: <b><%= ((total.to_f +  pending_amount.to_f) + service_charge.to_f).to_f %></b></td></tr>
+              <!--  <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
+              <tr><td colspan="4" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
+              <tr><td>Signature</td></tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

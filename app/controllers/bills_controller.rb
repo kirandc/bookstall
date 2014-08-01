@@ -50,6 +50,14 @@ class BillsController < ApplicationController
   def bill_print
   end
 
+  def large_bill
+    @customer = Customer.find(params[:id])
+    @month =  params[:month]
+    @year = params[:year]
+    @employee = @customer.employee
+    render :layout => false
+  end
+
   def print
     @reciept_type = params[:reciept_type] 
     @employee = Employee.find(params[:employee_id])
