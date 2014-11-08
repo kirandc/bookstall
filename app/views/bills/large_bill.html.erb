@@ -23,12 +23,10 @@
               <tr><td colspan="4" style="font-size:14px;"><hr></td></tr>
               <% total = 0.0 %>
               <% customer_bills.each do |customer_bill| %>
-                <% if customer_bill.paper.paper_month_year == "Monthly" %>  
-                  <tr>
-                    <td><%= customer_bill.paper.name %> </td><td><center><%= get_paper_day(customer_bill.paper) %></center> </td><td><center> <%= get_paper_qunt(customer_bill.paper) %> </center></td><td><center><%= customer_bill.amount %></center></td>
-                  </tr>
-                  <% total += customer_bill.amount.to_f %>
-                <%end%>
+                <tr>
+                  <td><%= customer_bill.paper.name %> </td><td><center><%= get_paper_day(customer_bill.paper) %></center> </td><td><center> <%= get_paper_qunt(customer_bill.paper) %> </center></td><td><center><%= customer_bill.amount %></center></td>
+                </tr>
+                <% total += customer_bill.amount.to_f %>
               <% end %>
               <tr><td colspan="4"><hr/></td></tr>
               <% service_charge = (@employee.service_charge or @customer.service_charge) ? '5.00' : '0.00' %>
