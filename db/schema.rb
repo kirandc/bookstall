@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530171240) do
+ActiveRecord::Schema.define(:version => 20141228165259) do
 
   create_table "bill_histories", :force => true do |t|
     t.integer  "paper_id"
@@ -63,7 +64,8 @@ ActiveRecord::Schema.define(:version => 20120530171240) do
     t.string   "initial"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "service_charge", :default => false
+    t.boolean  "service_charge",        :default => false
+    t.float    "service_charge_amount", :default => 5.0
   end
 
   create_table "papers", :force => true do |t|
