@@ -9,6 +9,9 @@ gem 'will_paginate', '>=3.0.pre'
 gem 'mysql2', '< 0.3'
 
 gem 'newrelic_rpm'
+group :production do
+  gem 'pg'
+end
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
