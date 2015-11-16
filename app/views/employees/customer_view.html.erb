@@ -25,7 +25,7 @@
           <% end %>
 	  </td>
           <% sum = customer.bills.sum(:amount, :conditions => ["month = ? and year = ?",@month, @year ] ) %>
-          <% if sum.blank? %>
+          <% if sum == 0 %>
             <% amount = sum %>
           <% else%>
             <% amount = customer.service_charge ? sum + @employee.service_charge_amount : sum %>
