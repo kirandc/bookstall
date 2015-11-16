@@ -12,6 +12,7 @@
     </tr>
   </thead>
   <tbody>
+    <% total_amount = 0 %>  
     <% for customer in @employee.customers %>
       <tr height="10px;">
         <td><%= customer.custid %></td>
@@ -23,7 +24,10 @@
 		<%= customer_bill.paper.initial %>,
           <% end %>
 	  </td>
-          <td><%= customer.bills.sum(:amount, :conditions => ["month = ? and year = ?",@month, @year ] ) %></td>
+          <% sum = customer.bills.sum(:amount, :conditions => ["month = ? and year = ?",@month, @year ] ) %>
+          <% amount = customer.service_charge ? sum + @employee.service_charge_amount : sum %>
+          <% total_amount = total_amount + amount %>  
+          <td><%= amount %></td>
           <td><%= customer.service_charge ? 'Yes' : 'No' %></td>
           <td></td>
 	  <td></td>
@@ -31,5 +35,5 @@
         <% end if @employee.customers  %>
       </tbody>
     </table>
-
+    <p style="float:right">Total Amount = <%= total_amount %> </p>
 
