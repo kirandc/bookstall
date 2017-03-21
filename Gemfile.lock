@@ -40,7 +40,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    mysql2 (0.2.7)
+    mysql2 (0.2.24)
     newrelic_rpm (3.5.0.1)
     pg (0.18.1)
     polyglot (0.3.3)
@@ -82,3 +82,9 @@ DEPENDENCIES
   pg
   rails (= 3.0.20)
   will_paginate (>= 3.0.pre)
+
+RUBY VERSION
+   ruby 1.9.3p551
+
+BUNDLED WITH
+   1.14.6
