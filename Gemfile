@@ -7,6 +7,7 @@ gem 'rails', '4.1.0'
 #gem 'mislav-will_paginate',  '~> 2.3.2', :require=> 'will_paginate'
 gem 'will_paginate', '3.0.5'
 gem 'mysql2', '0.3.18'
+gem 'rails_12factor'
 
 #gem 'newrelic_rpm'
 group :production do
