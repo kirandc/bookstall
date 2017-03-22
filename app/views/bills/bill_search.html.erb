@@ -1,7 +1,7 @@
 <h1>Search customers bill status for month</h1>
 
 
-<% form_for :bill, @bill = Bill.new, :url => { :action => 'search' } do |c| %>
+<%= form_for @bill = Bill.new, url: search_bills_path do |c| %>
 
   <table class="dati">
     <thead>

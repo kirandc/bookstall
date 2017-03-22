@@ -1,9 +1,9 @@
 <h1>Generate new bill </h1>
 
 
-<% form_for :bill_history, @bill_history, :url => { :action => 'create' } do |c| %>
+<%= form_for @bill_history, :url => bills_path do |c| %>
 
-  <%= render :partial => 'form', :locals => { :c => c } %>
+  <%= render 'form', c: c %>
 
   <p>
   <%= submit_tag 'create' %>

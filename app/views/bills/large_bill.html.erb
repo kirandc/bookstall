@@ -1,4 +1,4 @@
-<% customer_bills = @customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+<% customer_bills = @customer.bills.where(" month = ? and year = ?", @month, @year) %>
 <% pending_amount = @customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
 <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 100 and  @customer.customer_type == "Monthly"%>
   <div style="height:1000px">
@@ -29,9 +29,7 @@
                 <% total += customer_bill.amount.to_f %>
               <% end %>
               <tr><td colspan="4"><hr/></td></tr>
-              <% service_charge = (@employee.service_charge or @customer.service_charge) ? @employee.service_charge_amount : '0.00' %>
-              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Service Charge: <%= service_charge %></td></tr>
-              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Total amount: <b><%= ((total.to_f +  pending_amount.to_f) + service_charge.to_f).to_f %></b></td></tr>
+              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Total amount: <b><%= ((total.to_f +  pending_amount.to_f) + 10).to_f %></b></td></tr>
               <!--  <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
               <tr><td colspan="4" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
               <tr><td>Signature</td></tr>

@@ -9,7 +9,7 @@
     </thead>
   <tbody>
   <% @customers.each do | customer| %>
-      <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+      <% customer_bills = customer.bills.where("month = ? and year = ?", @month, @year) %>
       <% if !customer_bills.blank? and customer_bills.size > 13 and  customer.customer_type == "Monthly"%>
         <tr>
           <td><%= customer.first_name %> <%= customer.middle_name %> <%= customer.last_name %></td>
@@ -21,7 +21,7 @@
   </table>
   <% elsif @reciept_type == "Middle Reciept" %>
     <% @customers.each do | customer| %>
-      <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+      <% customer_bills = customer.bills.where("month = ? and year = ?", @month, @year) %>
       <% pending_amount = customer.bills.sum(:amount, :conditions => [" month != ? and year != ?", @month, @year]) %>
       <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 13 and  customer.customer_type == "Monthly"%>
         <div style="width:600px;height:580px;margin-left:100px;margin-bottom:10px;">
@@ -55,9 +55,7 @@
             <%end%>
           <% end %>
           <tr><td colspan="4"><hr/></td></tr>
-          <% service_charge = (@employee.service_charge or customer.service_charge) ? @employee.service_charge_amount : '0.00' %>
-          <tr><td colspan="4" style="font-size:14px;">Service Charge: <%= service_charge %></td></tr>
-          <tr><td colspan="4" style="font-size:14px;">Total amount: <%= total.to_f +  pending_amount.to_f + service_charge.to_f %></td></tr>
+          <tr><td colspan="4" style="font-size:14px;">Total amount: <%= total.to_f +  pending_amount.to_f + 10 %></td></tr>
           <!-- <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
           <tr><td>Signature</td><td colspan="3" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
           <tr><td>Signature</td></tr>
@@ -75,7 +73,7 @@
   <!-- previous 850 -->
   <div style="width:845px;padding-top:1px;padding-bottom:1px;">
     <% @customers.each do | customer | %>
-      <% customer_bills = customer.bills.find(:all, :conditions => [" month = ? and year = ?", @month, @year]) %>
+      <% customer_bills = customer.bills.where("month = ? and year = ?", @month, @year) %>
       <% check_monthly = false %>
       <% customer_bills.each do |customer_bill| %>
         <% check_monthly = true if customer_bill.paper.paper_month_year == "Monthly"  %>
