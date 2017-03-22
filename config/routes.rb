@@ -18,7 +18,7 @@ TestApp::Application.routes.draw do
       get 'paid'
       get 'print'
       get 'bill_edit'
-      match 'update_bill'
+      get 'update_bill'
     end
   end
   resources :employees do

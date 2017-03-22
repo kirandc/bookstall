@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
-ruby "1.9.3"
-gem 'rails', '3.0.20'
+ruby "2.1.1"
+gem 'rails', '4.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #gem 'mislav-will_paginate',  '~> 2.3.2', :require=> 'will_paginate'
-gem 'will_paginate', '>=3.0.pre'
-gem 'mysql2', '< 0.3'
+gem 'will_paginate', '3.0.5'
+gem 'mysql2', '0.3.18'
 
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 group :production do
   gem 'pg'
 end
