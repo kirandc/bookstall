@@ -1,9 +1,9 @@
 <h1>Edit Customer</h1>
 
 
-<% form_for :paper, @paper, :url => { :action => 'update', :id => @paper.id }, :html => {:method => :put} do |c| %>
+<%= form_for @paper, url: paper_path(@paper.id), :html => {:method => :put} do |c| %>
 
-  <%= render :partial => 'form', :locals => { :c => c } %>
+  <%= render 'form', c: c %>
 
   <p>
   <%= submit_tag 'save' %>

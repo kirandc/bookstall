@@ -18,9 +18,10 @@ TestApp::Application.routes.draw do
       get 'paid'
       get 'print'
       get 'bill_edit'
-      get 'update_bill'
     end
   end
+
+  patch 'customers/:id/update_bill/:custid' => 'customers#update_bill', as: :update_bill_customer
   resources :employees do
     member do
       get 'customer_list'

@@ -2,16 +2,16 @@ class CustomersController < ApplicationController
   def index
     if !params[:search].blank? and !params[:search][:condition].blank?
       if params[:search][:condition] == "name"
-        @customers = Customer.paginate( :all, :conditions => "first_name LIKE '%#{params[:qname]}%'", :order => 'created_at ASC', :page => params[:page], :per_page => 100)
+        @customers = Customer.where("first_name LIKE '%#{params[:qname]}%'").order('created_at ASC').page(params[:page]).per_page(100)
         @condition = "name"
         @q = params[:qname]
       else
-        @customers = Customer.paginate( :all, :conditions => "custid = '#{params[:q]}'",:order => 'created_at ASC', :page => params[:page], :per_page => 100) if !params[:q].blank?
+        @customers = Customer.where("custid = '#{params[:q]}'").order('created_at ASC').page(params[:page]).per_page(100) if !params[:q].blank?
         @condition = "id"
         @q = params[:q]
       end
     else
-      @customers = Customer.paginate( :all, :order => 'created_at ASC', :page => params[:page], :per_page => 100)
+      @customers = Customer.order('created_at ASC').page(params[:page]).per_page(100)
     end
     session["request_id"] = nil
   end
@@ -27,7 +27,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(params[:customer])
+    @customer = Customer.new(customer_params)
     @customer.save!
     if ![:papers].blank?
       params[:papers].each do |paper_id|
@@ -43,7 +43,7 @@ class CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update_attributes(params[:customer])
+    @customer.update_attributes(customer_params)
     if ![:papers].blank?
       @customer.customer_papers.each do |cus_paper|
         cus_paper.destroy
@@ -98,12 +98,22 @@ class CustomersController < ApplicationController
   def update_bill
 	@bill = Bill.find(params[:id])
 	@customer = Customer.find(params[:custid])
-	@bill.update_attributes(params[:bill])
+	@bill.update_attributes(bill_params)
   #@bill.amount = (@bill.qunt * @bill.paper.price.to_f)
   #@bill.save
 	  flash[ :notice ] = "Bill Sucessfully updated"
     redirect_to :action => 'bill_history', :id => @customer.id
   rescue ActiveRecord::RecordInvalid
     render :action => 'bill_edit'
+  end
+
+  private
+  
+  def bill_params
+    params.fetch(:bill, {}).permit(:day, :qunt, :amount)
+  end
+
+  def customer_params
+    params.fetch(:customer, {}).permit(:first_name, :middle_name, :last_name, :address, :phone_no, :mobile_no, :employee_id, :service_charge)
   end
 end

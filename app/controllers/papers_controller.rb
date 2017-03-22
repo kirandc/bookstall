@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   def index
-    @papers = Paper.paginate( :all, :order => 'created_at ASC', :page => params[:page], :per_page => 100)
+    @papers = Paper.order('created_at ASC').page(params[:page]).per_page(100)
   end
 
   def new
@@ -12,7 +12,7 @@ class PapersController < ApplicationController
   end
 
   def create
-    @paper = Paper.new(params[:paper])
+    @paper = Paper.new(paper_params)
     @paper.save!
     flash[ :notice ] = "Paper Sucessfully created"
     redirect_to :action => 'index'
@@ -22,7 +22,7 @@ class PapersController < ApplicationController
 
   def update
     @paper = Paper.find(params[:id])
-    @paper.update_attributes(params[:paper])
+    @paper.update_attributes(paper_params)
     flash[ :notice ] = "Paper
     Sucessfully updated"
     redirect_to :action => 'index'
@@ -35,5 +35,11 @@ class PapersController < ApplicationController
     @paper.destroy
     flash[ :notice ] = "Paper deleted Sucessfully"
     redirect_to :action => 'index'
+  end
+   
+  private
+
+  def paper_params
+    params.fetch(:paper, {}).permit(:name, :initial, :paper_type, :paper_month_year, :day, :qunt, :price)
   end
 end

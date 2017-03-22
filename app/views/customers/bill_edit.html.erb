@@ -1,7 +1,7 @@
 <h1>Edit Bill</h1>
 
 
-<% form_for :bill, @bill, :url => { :action => 'update_bill', :id => @bill.id, :custid => @customer.id } do |c| %>
+<%= form_for @bill, url: update_bill_customer_path(@bill.id, @customer.id) do |c| %>
 
 <table class="dati">
   <thead>

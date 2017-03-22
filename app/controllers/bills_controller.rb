@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   def index
-    @bill_histories = BillHistory.paginate( :all, :order => 'created_at DESC', :page => params[:page], :per_page => 100)
+    @bill_histories = BillHistory.order('created_at DESC').page(params[:page]).per_page(100)
   end
 
   def new
