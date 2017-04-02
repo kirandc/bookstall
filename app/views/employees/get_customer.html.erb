@@ -1,7 +1,7 @@
 <h1>Get Customers of employee</h1>
 
 
-<% form_for :customer, @customer = Customer.new, :url => { :action => 'customer_view' } do |c| %>
+<%= form_for @customer = Customer.new, url: customer_view_employees_path do |c| %>
 
   <table class="dati">
     <thead>

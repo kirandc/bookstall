@@ -16,10 +16,10 @@
     <% for customer in @employee.customers %>
       <tr height="10px;">
         <td><%= customer.custid %></td>
-        <td><%= link_to "#{customer.first_name} #{customer.middle_name} #{customer.last_name}", :action => "show", :id => customer.id %></td>
+        <td><%= link_to "#{customer.first_name} #{customer.middle_name} #{customer.last_name}", customer_path(customer.id) %></td>
         <td><%= get_month(@month.to_i) %>/<%= @year %></td>
           <td>
-	  <% customer_bills = customer.bills.find(:all, :conditions => ["month = ? and year = ?",@month, @year ] ) %>
+	  <% customer_bills = customer.bills.where("month = ? and year = ?",@month, @year) %>
 	  <% customer_bills.each do |customer_bill| %>
 		<%= customer_bill.paper.initial %>,
           <% end %>
