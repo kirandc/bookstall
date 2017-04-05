@@ -22,7 +22,7 @@
   <% elsif @reciept_type == "Middle Reciept" %>
     <% @customers.each do | customer| %>
       <% customer_bills = customer.bills.where("month = ? and year = ?", @month, @year) %>
-      <% pending_amount = customer.bills.wheresum("month != ? and year != ?", @month, @year)sum(:amount) %>
+      <% pending_amount = customer.bills.wheresum("month != ? and year != ?", @month, @year).sum(:amount) %>
       <% if !customer_bills.blank? and customer_bills.size > 5 and customer_bills.size <= 13 and  customer.customer_type == "Monthly"%>
         <div style="width:600px;height:580px;margin-left:100px;margin-bottom:10px;">
         <table style="border: 1px solid">
