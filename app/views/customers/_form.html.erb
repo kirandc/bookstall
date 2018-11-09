@@ -45,15 +45,19 @@
     </tr>
     -->
     <tr>
-      <td>Service Charge</td>
+      <td>Service Charge apply (Yes/No)</td>
       <td><%= c.check_box  :service_charge %></td>
+    </tr>
+    <tr>
+      <td>Service Charge Amount</td>
+      <td><%= c.text_field  :service_charge_field %></td>
     </tr>
     <tr>
       <td>Select Custome Papers</td>
     </tr>
     <% counter = 1%>
     <% @papers.each do |paper| %>
-      <%= raw "<tr>" if counter % 2 == 1 %> 
+      <%= raw "<tr>" if counter % 2 == 1 %>
         <td><%= check_box_tag "papers[]", paper.id, get_customer_paper(@customer, paper.id) %><%= paper.name %></td>
         <%= raw "</tr>" if counter % 2 == 0 %>
       <% counter += 1%>

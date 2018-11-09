@@ -7,8 +7,8 @@
         <td>
           <div>
             <div style="width:600px;font-weight:bold:font-size:15px;"><center><b>Agent : S. T. NEVE </b></center></div>
-            <div style="width:600px"><center>S T. Neve Bookstall Chopda. dist -Jalgoan</center> </div>
-            <div style="width:600px"><center>(02586) 223547 </center></div>
+            <div style="width:600px"><center>S T Bookstall, Bus Stand, Chopda.</center> </div>
+            <div style="width:600px"><center>Mobile - 9146611876,9423978650 </center></div>
             <div style="float: right; margin-right: 40px; margin-left: 210px;">Date:   &nbsp; / &nbsp;  /&nbsp;<%= Time.now.year %></div>
             <div style="width:600px;margin-left:8px;">Customer ID: <%= @customer.custid %></div>
             <div style="width:600px;margin-left:8px;">Month/Year: <%= get_month(@month.to_i) %> / <%= @year %></div>
@@ -29,10 +29,13 @@
                 <% total += customer_bill.amount.to_f %>
               <% end %>
               <tr><td colspan="4"><hr/></td></tr>
-              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Total amount: <b><%= ((total.to_f +  pending_amount.to_f) + 10).to_f %></b></td></tr>
-              <!--  <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr> 
+              <% service_charge = 0 %>
+              <% service_charge = @customer.service_charge_field if @customer.service_charge%>
+              <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="font-size:14px;">Total amount: <b><%= ((total.to_f +  pending_amount.to_f) + service_charge).to_f %></b></td></tr>
+              <!--  <tr><td colspan="4" style="font-size:14px;">Discount: <%#= customer.discount %>%</td></tr>
               <tr><td colspan="4" style="font-size:14px;">Paid amount: <%#= (total.to_f +  pending_amount.to_f) -  (((total.to_f +  pending_amount.to_f) * customer.discount) / 100) %></td></tr> -->
               <tr><td>Signature</td></tr>
+              <tr><td>Cheque issued in favour of S. T. Book Stall.</td></tr>
             </table>
           </div>
         </td>

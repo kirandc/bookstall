@@ -50,12 +50,12 @@ class CustomersController < ApplicationController
       end
 
       params[:papers].each do |paper_id|
-        CustomerPaper.create!(:customer_id => @customer.id, :paper_id => paper_id) 
+        CustomerPaper.create!(:customer_id => @customer.id, :paper_id => paper_id)
       end if not params[:papers].blank?
     end
     flash[ :notice ] = "Customer Sucessfully updated"
     if session["request_id"].blank?
-      redirect_to :action => :index 
+      redirect_to :action => :index
     else
       redirect_to customer_list_employee_path(:id => session["request_id"])
     end
@@ -89,12 +89,12 @@ class CustomersController < ApplicationController
     @bill = Bill.find(params[:id])
     render :layout => false
   end
-  
+
   def bill_edit
 	@bill = Bill.find(params[:bill_id])
 	@customer = Customer.find(params[:id])
   end
-  
+
   def update_bill
 	@bill = Bill.find(params[:id])
 	@customer = Customer.find(params[:custid])
@@ -108,12 +108,12 @@ class CustomersController < ApplicationController
   end
 
   private
-  
+
   def bill_params
     params.fetch(:bill, {}).permit(:day, :qunt, :amount)
   end
 
   def customer_params
-    params.fetch(:customer, {}).permit(:first_name, :middle_name, :last_name, :address, :phone_no, :mobile_no, :employee_id, :service_charge)
+    params.fetch(:customer, {}).permit(:first_name, :middle_name, :last_name, :address, :phone_no, :mobile_no, :employee_id, :service_charge, :service_charge_field)
   end
 end

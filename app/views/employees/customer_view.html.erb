@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% total_amount = 0 %>  
+    <% total_amount = 0 %>
     <% for customer in @employee.customers %>
       <tr height="10px;">
         <td><%= customer.custid %></td>
@@ -28,9 +28,9 @@
           <% if sum == 0 %>
             <% amount = sum %>
           <% else%>
-            <% amount = customer.service_charge ? sum + @employee.service_charge_amount : sum %>
+            <% amount = customer.service_charge ? sum + customer.service_charge_field : sum %>
           <% end %>
-          <% total_amount = total_amount + amount %>  
+          <% total_amount = total_amount + amount %>
           <td><%= amount %></td>
           <td><%= customer.service_charge ? 'Yes' : 'No' %></td>
           <td></td>

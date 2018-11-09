@@ -33,7 +33,7 @@
         $('#name_search').attr('disabled', "");
         $('#id_search').attr('disabled', "disabled");
         }
-        });   
+        });
   });
 </script>
 </form>
@@ -45,8 +45,8 @@
       <th width=400>Papers</th>
       <th>Phone No.</th>
       <th>Mobile No.</th>
-      <th>Discount</th>
       <th>Service Charge</th>
+      <th>Service Charge Amount</th>
       <th width=100 colspan=3>Action</th>
     </tr>
   </thead>
@@ -62,8 +62,8 @@
           </td>
           <td><%= customer.phone_no %></td>
           <td><%= customer.mobile_no %></td>
-          <td><%= customer.discount %></td>
           <td><%= customer.service_charge ? 'Yes' : 'No' %></td>
+          <td><%= customer.service_charge_field %></td>
           <td><%= link_to "Edit", {:action => "show", :id => customer.id} %></td>
           <td><%= link_to "Delete", customer_path(customer),  :method => :delete, :confirm => "Do you want to delete this customer?" %></td>
           <td><%= link_to "Bill History", {:action => "bill_history", :id => customer.id} %></td>
