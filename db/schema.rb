@@ -13,72 +13,72 @@
 
 ActiveRecord::Schema.define(version: 20181109131407) do
 
-  create_table "bill_histories", force: true do |t|
-    t.integer  "paper_id"
-    t.integer  "month"
-    t.integer  "year"
+  create_table "bill_histories", force: :cascade do |t|
+    t.integer  "paper_id",    limit: 4
+    t.integer  "month",       limit: 4
+    t.integer  "year",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "employee_id"
+    t.integer  "employee_id", limit: 4
   end
 
-  create_table "bills", force: true do |t|
-    t.integer  "customer_id"
-    t.integer  "paper_id"
-    t.integer  "month"
-    t.integer  "year"
-    t.integer  "qunt"
-    t.integer  "day"
-    t.boolean  "is_paid",     default: false
-    t.float    "amount",      default: 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "customer_papers", force: true do |t|
-    t.integer  "customer_id"
-    t.integer  "paper_id"
+  create_table "bills", force: :cascade do |t|
+    t.integer  "customer_id", limit: 4
+    t.integer  "paper_id",    limit: 4
+    t.integer  "month",       limit: 4
+    t.integer  "year",        limit: 4
+    t.integer  "qunt",        limit: 4
+    t.integer  "day",         limit: 4
+    t.boolean  "is_paid",                default: false
+    t.float    "amount",      limit: 24, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "customers", force: true do |t|
-    t.string   "custid"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "middle_name"
-    t.text     "address"
-    t.string   "phone_no"
-    t.string   "mobile_no"
-    t.integer  "employee_id"
+  create_table "customer_papers", force: :cascade do |t|
+    t.integer  "customer_id", limit: 4
+    t.integer  "paper_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "birthdate"
-    t.string   "customer_type",        default: "Monthly"
-    t.integer  "discount",             default: 0
-    t.boolean  "service_charge",       default: false
-    t.integer  "service_charge_field", default: 10
   end
 
-  create_table "employees", force: true do |t|
-    t.string   "name"
-    t.string   "initial"
+  create_table "customers", force: :cascade do |t|
+    t.string   "custid",               limit: 255
+    t.string   "first_name",           limit: 255
+    t.string   "last_name",            limit: 255
+    t.string   "middle_name",          limit: 255
+    t.text     "address",              limit: 65535
+    t.string   "phone_no",             limit: 255
+    t.string   "mobile_no",            limit: 255
+    t.integer  "employee_id",          limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "service_charge",        default: false
-    t.float    "service_charge_amount", default: 5.0
+    t.string   "birthdate",            limit: 255
+    t.string   "customer_type",        limit: 255,   default: "Monthly"
+    t.integer  "discount",             limit: 4,     default: 0
+    t.boolean  "service_charge",                     default: false
+    t.integer  "service_charge_field", limit: 4,     default: 10
   end
 
-  create_table "papers", force: true do |t|
-    t.string   "name"
-    t.string   "initial"
-    t.string   "price"
-    t.integer  "day",              default: 1
-    t.integer  "qunt",             default: 1
-    t.string   "paper_type"
+  create_table "employees", force: :cascade do |t|
+    t.string   "name",                  limit: 255
+    t.string   "initial",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "paper_month_year", default: "Monthly"
+    t.boolean  "service_charge",                    default: false
+    t.float    "service_charge_amount", limit: 24,  default: 5.0
+  end
+
+  create_table "papers", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "initial",          limit: 255
+    t.string   "price",            limit: 255
+    t.integer  "day",              limit: 4,   default: 1
+    t.integer  "qunt",             limit: 4,   default: 1
+    t.string   "paper_type",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "paper_month_year", limit: 255, default: "Monthly"
   end
 
 end

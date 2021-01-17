@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
-ruby "2.0.0"
-gem 'rails', '4.1.0'
+ruby "2.5.3"
+gem 'rails', '4.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #gem 'mislav-will_paginate',  '~> 2.3.2', :require=> 'will_paginate'
 gem 'will_paginate', '3.0.5'
-gem 'mysql2', '0.3.18'
+gem 'mysql2', '~> 0.4.0'
 gem 'rails_12factor'
 
 #gem 'newrelic_rpm'
