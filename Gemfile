@@ -11,7 +11,7 @@ gem 'rails_12factor'
 
 #gem 'newrelic_rpm'
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.18'
 end
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 
